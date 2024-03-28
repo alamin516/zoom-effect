@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const zoomElement = document.querySelector(".workspace");
+    const zoomElement = document.querySelector(".bg");
     const content1 = document.querySelector(".content1");
     const content2 = document.querySelector(".content2");
     const content3 = document.querySelector(".content3");
