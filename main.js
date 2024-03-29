@@ -10,9 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const ZOOM_SPEED = 1.5;
   let scrollCount = 0;
 
-  content2.style.display = "none";
-  content3.style.display = "none";
-  content4.style.display = "none";
+  // Initially hide content 2, 3, and 4
+  content2.classList.add("hidden");
+  content3.classList.add("hidden");
+  content4.classList.add("hidden");
 
   document.addEventListener("wheel", function (e) {
     if (e.deltaY > 0) {
@@ -21,38 +22,37 @@ document.addEventListener("DOMContentLoaded", function () {
       scrollCount--;
     }
 
+    // Show the appropriate content based on scroll count
     if (scrollCount === 0 || zoom === 0) {
-      content1.style.display = "block";
-      content2.style.display = "none";
-      content3.style.display = "none";
-      content4.style.display = "none";
+      content1.classList.remove("hidden");
+      content2.classList.add("hidden");
+      content3.classList.add("hidden");
+      content4.classList.add("hidden");
     } else if (scrollCount === 2) {
-      content1.style.display = "none";
-      content2.style.display = "block";
-      content3.style.display = "none";
-      content4.style.display = "none";
+      content1.classList.add("hidden");
+      content2.classList.remove("hidden");
+      content3.classList.add("hidden");
+      content4.classList.add("hidden");
       zoomElement.style.display = "block";
       zoomElement.style.transition = ".5s ease-in-out";
     } else if (scrollCount === 4) {
-      content1.style.display = "none";
-      content2.style.display = "none";
-      content3.style.display = "block";
-      content4.style.display = "none";
+        content1.classList.add("hidden");
+        content2.classList.add("hidden");
+        content3.classList.remove("hidden");
+        content4.classList.add("hidden");
       zoomElement.style.display = "block";
       zoomElement.style.transition = ".5s ease-in-out";
     } else if (scrollCount === 6) {
-      content1.style.display = "none";
-      content2.style.display = "none";
-      content3.style.display = "none";
-      content4.style.display = "block";
+        content1.classList.add("hidden");
+        content2.classList.add("hidden");
+        content3.classList.add("hidden");
+        content4.classList.remove("hidden");
       zoomElement.style.display = "none";
       zoomElement.style.transition = ".5s ease-in-out";
     }
 
     // Ensure scroll count stays within bounds
     scrollCount = Math.min(Math.max(scrollCount, 0), 6);
-
-    console.log(scrollCount);
 
     // Adjust zoom level
     zoom = MIN_ZOOM + scrollCount * ZOOM_SPEED;
